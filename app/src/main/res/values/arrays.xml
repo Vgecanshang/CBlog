@@ -1,0 +1,13 @@
+<resources>
+    <!-- Reply Preference (展现的值)-->
+    <string-array name="reply_entries">
+        <item>回复</item>
+        <item>回复全部</item>
+    </string-array>
+
+    <!-- 存储到手机的值 -->
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+</resources>
