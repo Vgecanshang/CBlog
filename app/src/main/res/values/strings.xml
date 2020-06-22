@@ -105,6 +105,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="action_tab">TabLayout</string>
 
     <string name="title_detail">CBlog detail activity title.</string>
     
@@ -119,7 +120,7 @@
 
     <!-- Messages Preferences -->
     <string name="signature_title">签名</string>
-    <string name="reply_title">默认恢复方式</string>
+    <string name="reply_title">回复方式</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">定期同步Email</string>
@@ -127,5 +128,8 @@
     <string name="attachment_summary_on">自动下载 Email中的附件
     </string>
     <string name="attachment_summary_off">只在手动请求时下载附件</string>
+
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 
 </resources>

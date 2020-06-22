@@ -2,16 +2,18 @@ package com.cy.cblog.ui.setting
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.preference.EditTextPreference
-import androidx.preference.ListPreference
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.*
 import com.cy.cblog.R
 import com.cy.cblog.databinding.ActivitySettingsBinding
 import com.cy.cblog.frame.CActivity
 
 /**
  * 设置
+ *
+ * 利用 PreferenceFragmentCompat 的设置页面值会自动存在 Preference 中.
+ * 1、在当前页面可以通过 findPreference来查找值
+ * 2、在其他页面 可以通过 val signature = PreferenceManager.getDefaultSharedPreferences(this)
+ *  .getString("signature","") 方式获取值(PreferenceFragmentCompat本质就是存在SharedPreference)
  * @author Cyong
  * @date 2020/6/17 16:10
  */

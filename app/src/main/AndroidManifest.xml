@@ -37,6 +37,12 @@
             android:screenOrientation="portrait"
             android:label="@string/action_settings"/>
 
+        <activity android:name="com.cy.cblog.ui.tab.TabActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:label="@string/action_tab"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.cy.cblog.ui.main.notifications
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.cy.cblog.databinding.FragmentNotificationsBinding
 import com.cy.cblog.frame.CFragment
+import com.cy.cblog.ui.tab.TabActivity
 import com.cy.home.ui.notifications.NotificationsViewModel
 
 class NotificationsFragment : CFragment() {
@@ -26,6 +28,11 @@ class NotificationsFragment : CFragment() {
         notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textNotifications.text = it
         })
+
+        binding.buttonTab.setOnClickListener{
+            startActivity(Intent(activity , TabActivity::class.java))
+        }
+
         return binding.root
     }
 }
