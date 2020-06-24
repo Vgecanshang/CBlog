@@ -1,2 +1,80 @@
 include ':app'
 rootProject.name = "CBlog"
+//添加gradle构建监听
+gradle.addBuildListener(new BuildListener() {
+
+    @Override
+    void buildStarted(Gradle gradle) {
+        println '开始构建'
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+        //var1.gradle.rootProject 这里访问 Project 对象时会报错。
+        //因为还未完成 Project 的初始化
+        println 'setting 评估完成 (settings.gradle 中代码执行完毕)'
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        println '项目结构加载完成（初始化阶段结束）'
+        println '初始化结束，可访问根目录：' + gradle.gradle.rootProject
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        println '所有项目评估完成（配置阶段结束）'
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        println '构建结束'
+    }
+})
+
+//监听构架过程的时间
+long beginOfSetting = System.currentTimeMillis()
+def beginOfConfig
+def configHasBegin = false
+def beginOfProjectConfig = new HashMap()
+def beginOfProjectExcute
+gradle.projectsLoaded {
+    println '初始化阶段，耗时：' + (System.currentTimeMillis() - beginOfSetting) + 'ms'
+}
+
+gradle.beforeProject {
+    project ->
+        if (!configHasBegin) {
+            configHasBegin = true
+            beginOfConfig = System.currentTimeMillis()
+        }
+        beginOfProjectConfig.put(project, System.currentTimeMillis())
+
+}
+
+gradle.afterProject {
+    project ->
+        def begin = beginOfProjectConfig.get(project)
+        println '配置阶段，' + project + '耗时：' + (System.currentTimeMillis() - begin) + 'ms'
+}
+
+gradle.taskGraph.whenReady {
+    println '配置阶段，总共耗时：' + (System.currentTimeMillis() - beginOfConfig) + 'ms'
+    beginOfProjectExcute = System.currentTimeMillis()
+}
+
+gradle.taskGraph.beforeTask {
+    task ->
+        task.doFirst {
+            task.ext.beginOfTask = System.currentTimeMillis()
+        }
+        task.doLast {
+            println '执行阶段，' + task + ' 耗时：' + (System.currentTimeMillis() - task.beginOfTask) + 'ms'
+        }
+}
+
+gradle.buildFinished {
+    println '执行阶段，耗时：' + (System.currentTimeMillis() - beginOfProjectExcute) + 'ms'
+}
+
+

@@ -61,3 +61,38 @@ dependencies {
 
     implementation rootProject.ext.preference
 }
+
+/**
+ * getAllProjects 使用示例
+ */
+this.getProjects()
+def getProjects(){
+    println '<=====================>'
+    println ' Root Project Start '
+    println '<=====================>'
+    //1、getAllprojects 方法返回一个包含根 project 与其子 project 的 set 集合
+    //eachWithIndex 方法用于遍历集合、数组等可迭代容器，
+    //并同时返回下标，不同于 each 方法仅返回 project
+    this.getAllprojects().eachWithIndex{  entry, int index ->
+        //2、下标为0，表明当前遍历的是 rootProject
+        if(index == 0){
+            println "Root Project is $entry"
+        }else{
+            println "Child Project is $entry"
+        }
+    }
+}
+
+/**
+ * getAllsubproject示例
+ */
+this.getSubProjects()
+def getSubProjects(){
+    println '<=====================>'
+    println ' Sub Project Start '
+    println '<=====================>'
+    //
+    this.getSubprojects().each {Project project ->
+        println "child Project is $project"
+    }
+}
