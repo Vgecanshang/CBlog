@@ -28,9 +28,11 @@ class MainActivity : CActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications , R.id.navigation_wifi))
-        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        //MainActivity启用了 actionBar的theme后将这块代码放出来，可自动设置标题
+//        val appBarConfiguration = AppBarConfiguration(setOf(
+//            R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications , R.id.navigation_wifi))
+//        setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
     }
 

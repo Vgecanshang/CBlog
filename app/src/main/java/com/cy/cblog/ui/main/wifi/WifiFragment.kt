@@ -30,8 +30,13 @@ class WifiFragment: CFragment() {
 
         binding = FragmentWifiBinding.inflate(layoutInflater)
         wifiViewModel.text.observe(viewLifecycleOwner , Observer {
-            binding.textWifi.text = it
+            binding.toolbar.title = it
+            binding.toolbarLayout.title = it
         })
+
+        binding.listLayout.recyclerView
+
+
         return binding.root
     }
 
