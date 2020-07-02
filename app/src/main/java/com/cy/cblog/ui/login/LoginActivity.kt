@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.cy.cblog.R
 import com.cy.cblog.databinding.ActivityLoginBinding
 import com.cy.cblog.frame.CActivity
@@ -96,6 +97,10 @@ class LoginActivity : CActivity() {
                 loginViewModel.login(binding.username.text.toString(), binding.password.text.toString())
             }
         }
+
+        Glide.with(this)
+            .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587056301299&di=421baf3f56de08f2fd95a4e2969be9e5&imgtype=0&src=http%3A%2F%2Fimages.enet.com.cn%2Fegames%2Farticleimage%2F201204%2F20120416054140892.jpg")
+            .into(binding.ivLogo)
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
